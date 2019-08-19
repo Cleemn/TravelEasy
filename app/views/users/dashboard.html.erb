@@ -13,4 +13,6 @@
 
 
 <%= link_to "Déconnexion", destroy_user_session_path  %>
-<%= link_to "Supprimer votre compte", cancel_user_registration_path %>
+<%= link_to "Supprimer votre compte", method: :delete, data: { confirm: "êtes-vous sûr de vouloir supprimer votre compte?"} %>
+
+<!-- cancel_user_registration_path -->

@@ -11,3 +11,4 @@ end
 #  VS
 # les articles que je loue et qui sont bookes
 # les bookings de mes articles -> current_user.articles.bookings
+# ou truc du genre
