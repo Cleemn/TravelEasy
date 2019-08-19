@@ -3,8 +3,8 @@
     <h1>Besoin <strong><span id="banner-typed-text"></span></strong></h1>
     <p>TravelEasy vous facilite la vie !</p>
     <div class="container">
-      <a class="btn btn-outline-success" href="#">Je cherche du matériel</a>
-      <a class="btn btn-flat" href="#"><%= link_to "Je propose du matériel", new_article_path %></a>
+      </a><%= link_to "Je cherche du matériel", articles_path, class:"btn btn-outline-success" %>
+      <%= link_to "Je propose du matériel", new_article_path, class:"btn btn-flat" %>
     </div>
   </div>
 </div>
