@@ -1,11 +1,13 @@
 class UsersController < ApplicationController
-
   def dashboard
-  @articles = User.articles
-    # initier toutes les variables necessaires
-    # comme ca dans dashboard on a le necessaire
+    @articles = current_user.articles
+    # @bookings = current_user.bookings
   end
-
 end
-# user_session POST   /users/sign_in(.:format)
-# destroy_user_session DELETE /users/sign_out(.:format)
+
+# faire la logique du booking avant
+# User.bookings -> moi qui fais une demande de location
+# (la tente que je veux)
+#  VS
+# les articles que je loue et qui sont bookes
+# les bookings de mes articles -> current_user.articles.bookings

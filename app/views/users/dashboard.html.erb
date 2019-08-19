@@ -1,1 +1,16 @@
-<h1><%= Dear  %></h1>
+<h1><%= "${User.first_name}" %></h1>
+
+<h3 class="booked-articles">Vos articles en location</h3>
+  <% @articles.each do |article| %>
+  <%= article.name %>
+  <%= article.description %>
+  <%= article.price %>
+  <% end %>
+
+<!-- <h3 class="pending-bookings">Les demandes de location</h3>
+ -->
+<!-- <h3 class="articles-rented">Les articles que vous louez</h3> -->
+
+
+<%= link_to "Déconnexion", destroy_user_session_path  %>
+<%= link_to "Supprimer votre compte", cancel_user_registration_path %>
