@@ -1,9 +1,15 @@
-<h1>Editer : @article.name</h1>
-
-<%= simple_form_for(@article) do |f| %>
-  <%= f.input :name %>
-  <%= f.input :description %>
-  <%= f.input :price %>
-  <%= f.submit "Enregistrer les modifications"%>
-<% end %>
-
+<div class="container">
+  <div class="row">
+    <div class="col-4 offset-4">
+      <h1 class="form-title">Editer : <%= @article.name %> </h1>
+      <%= simple_form_for(@article) do |f| %>
+        <%= f.input :name %>
+        <%= f.input :description %>
+        <%= f.input :price %>
+        <div class="d-flex justify-content-center">
+          <%= f.submit "Enregistrer les modifications", class: "btn btn-flat form-green"%>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
