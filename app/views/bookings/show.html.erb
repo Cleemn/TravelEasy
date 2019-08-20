@@ -1,0 +1,11 @@
+<h1>Nous vous confirmons la prise en comptre de votre réservation : <%= @article.name.capitalize %>
+ du <%= @booking.start_date %> au <%= @booking.end_date %></h1>
+
+<p>Nous contactons le propriétaire pour la validation de votre réservation.</p>
+<p>Statut de votre réservation. <%= @booking.status %></p>
+
+<p><%= @booking.article.description %></p>
+
+<!-- %= cl_image_tag @article.photo, height: 300, width: 400, crop: :fill %--->
+
+<%= link_to "Retour à la liste", articles_path %>
