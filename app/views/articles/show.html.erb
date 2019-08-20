@@ -13,19 +13,13 @@
   </div>
   <div class="row d-flex justify-content-left ml-3">
     <div class="">
-      <a href="" class="btn btn-primary mx-2">Edit</a>
-      <a href="" class="btn btn-danger mx-2">Destroy</a>
+      <% if policy(@article).edit? %>
+        <%= link_to "Editer", edit_article_path(@article), class:"btn btn-primary mx-2" %>
+      <% end %>
+      <% if policy(@article).destroy? %>
+        <%= link_to "Supprimer", article_path, method: :delete, data: { confirm: "Are you sure?" }, class:"btn btn-danger mx-2" %>
+      <% end %>
       <%= link_to "Retour à la liste", articles_path, class:"btn btn-secondary mx-2" %>
     </div>
   </div>
 </div>
-
-
-<% if policy(@article).edit? %>
-  <%= link_to "Editer", edit_article_path(@article) %>
-<% end %>
-
-<% if policy(@article).destroy? %>
-  <%= link_to "Supprimer", article_path, method: :delete, data: { confirm: "Are you sure?" } %>
-<% end %>
-
