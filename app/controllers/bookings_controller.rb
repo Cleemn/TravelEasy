@@ -1,4 +1,7 @@
 class BookingsController < ApplicationController
+  def index
+    @bookings = Booking.all
+  end
 
   def new
     @booking = Booking.new
@@ -15,7 +18,6 @@ class BookingsController < ApplicationController
     if @booking.save
       redirect_to booking_path(@booking)
     else
-    # @dose = Dose.new
       render :new
     end
   end
@@ -25,9 +27,23 @@ class BookingsController < ApplicationController
     @article = Article.find(@booking.article_id)
   end
 
+  def accept
+    @booking = Booking.find(params[:booking_id])
+    @booking.status = "accepted"
+    @booking.save
+    redirect_to article_bookings_path(@booking)
+  end
+
+  def decline
+    @booking = Booking.find(params[:booking_id])
+    @booking.status = "declined"
+    @booking.save
+    redirect_to article_bookings_path(@booking)
+  end
+
   private
 
   def booking_params
-    params.require(:booking).permit(:start_date, :end_date, :user_id, :article_id)
+    params.require(:booking).permit(:start_date, :end_date, :user_id, :article_id, :status)
   end
 end

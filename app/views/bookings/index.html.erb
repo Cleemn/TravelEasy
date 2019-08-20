@@ -1,0 +1,14 @@
+<div class="m-2">
+  <% @bookings.each do |booking|%>
+    <div class="card-reservation col-6">
+      <%= cl_image_tag booking.article.photo, height: 200, width: 200, crop: :fill %>
+      <div class="container card-reservation-infos d-flex justify-content-between">
+        <p>Booked on <%= booking.created_at.strftime("%d/%m/%Y") %> by <%= booking.user.first_name %> for <%= ((booking.end_date.to_i - booking.start_date.to_i)/86400) %> days - <%= booking.status %></p>
+        <div class="d-flex justify-content-end">
+          <%= link_to "Accepter", booking_accept_path(booking), class:"btn btn-success" %>
+          <%= link_to "Refuser", booking_decline_path(booking), class:"btn btn-danger" %>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>
