@@ -10,6 +10,7 @@ class BookingsController < ApplicationController
     @booking = Booking.new(booking_params)
     @booking.user = current_user
     @booking.article = @article
+    @booking.price = @article.price
     @booking.status = "pending"
     if @booking.save
       redirect_to booking_path(@booking)
