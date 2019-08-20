@@ -1,14 +1,15 @@
 class UsersController < ApplicationController
   def dashboard
     @articles = current_user.articles
-    # @bookings = current_user.bookings
+    # tous les articles que j'ai mis en location
+    @bookings = current_user.bookings
+    # moi qui ai fait des demandes de location
+    @pending_bookings = current_user.bookings.status
+    # demandes de location auxquelles je n'ai pas encore rep
+    @rented_articles = current_user.articles.bookings
+    # les articles que je loue et qui sont bookes
   end
 end
 
-# faire la logique du booking avant
-# User.bookings -> moi qui fais une demande de location
-# (la tente que je veux)
-#  VS
-# les articles que je loue et qui sont bookes
-# les bookings de mes articles -> current_user.articles.bookings
-# ou truc du genre
+
+# differents onglets dans le dashboard
