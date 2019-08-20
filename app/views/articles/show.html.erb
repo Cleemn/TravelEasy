@@ -1,6 +1,7 @@
 <h1><%= @article.name.capitalize %> - <%= @article.price%>€/j </h1>
 <img src="" alt="">
 <p><%= @article.description %></p>
+<%= cl_image_tag @article.photo, height: 300, width: 400, crop: :fill %>
 
 <%= link_to "Retour à la liste", articles_path %>
 

@@ -49,7 +49,7 @@ class ArticlesController < ApplicationController
   private
 
   def article_params
-    params.require(:article).permit(:name, :description, :price)
+    params.require(:article).permit(:name, :description, :price, :photo)
   end
 
 end
