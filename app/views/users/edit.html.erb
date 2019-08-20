@@ -1,0 +1,18 @@
+<div class="container">
+  <div class="row">
+    <div class="col-4 offset-4">
+      <h1 class="form-title">Editez votre profil: <%= @user.first_name %> </h1>
+      <%= simple_form_for(@user) do |f| %>
+        <%= f.input :first_name %>
+        <%= f.input :last_name %>
+        <%= f.input :address %>
+        <%= f.input :photo %>
+        <%= f.input :photo_cache, as: :hidden %>
+        <div class="d-flex justify-content-center">
+          <%= f.submit "Enregistrer les modifications de votre profil", class: "btn btn-flat form-green"%>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
+

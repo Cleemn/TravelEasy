@@ -8,8 +8,11 @@
 
 jean = User.new(email: "jean@gmail.com", password:"errrrrrr" )
 jean.save
-paul = User.new(email: "Paul@gmail.com", password:"rrrrrferge")
+paul = User.new(email: "paul@gmail.com", password:"rrrrrferge")
 paul.save
+
+clem = User.new(email: "clem@gmail.com", password:"clem00", admin: true)
+clem.save
 
 article1 = Article.new(name: "valise", price: 3, user_id: 2)
 article1.save
