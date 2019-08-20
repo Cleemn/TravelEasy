@@ -5,3 +5,11 @@
 <%= link_to "Retour à la liste", articles_path %>
 
 
+<% if policy(@article).edit? %>
+  <%= link_to "Editer", edit_article_path(@article) %>
+<% end %>
+
+<% if policy(@article).destroy? %>
+  <%= link_to "Supprimer", article_path, method: :delete, data: { confirm: "Are you sure?" } %>
+<% end %>
+
