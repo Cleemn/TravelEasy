@@ -52,7 +52,6 @@
   margin: 0;
 }
 
-
 .card-review .card-review-infos {
   padding: 16px;
   display: flex;
@@ -68,6 +67,11 @@
   width: 40px;
 }
 
+.card-item-show {
+  background-color: white;
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  border-radius: 5px;
+}
 
 // Smallest device
 @media (min-width: 100px) and (max-width: 575px) {
