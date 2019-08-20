@@ -1,8 +1,23 @@
-<h2>Bienvenue sur TravelEasy! ci-dessous tous les articles disponibles pour vos futurs voyages : </h2>
+<div class="container">
+  <h4>Ci-dessous tous les articles disponibles pour vos futurs voyages : </h4>
 
-<% @articles.each do |article| %>
-<p><%= link_to article.name, article_path(article) %></p>
-<% end %>
+  <div class="cards">
+    <% @articles.each do |article| %>
+      <div class="card-product">
+      <%= cl_image_tag article.photo, height: 100, width: 150, crop: :fill %>
+
+        <div class="card-product-infos">
+
+          <h2><%= link_to article.name.capitalize, article_path(article) %></h2>
+          <div class="details">
+            <p><%=article.description%></p>
+            <p class="princing"><%=article.price%>€/Jour</p>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
 
 
 
