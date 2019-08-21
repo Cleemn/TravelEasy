@@ -16,10 +16,22 @@ class ArticlesController < ApplicationController
       # if params[:category] != ""
       # @restaurants = RESTAURANTS.select { |id, r| r[:category] == @category }
       # restaurants = Restaurant.where("name LIKE ?", "%tour%")
-      @articles = Article.where(category: @category)
+      @articles = Article.geocoded.where(category: @category)
+      @markers = @articles.map do |article|
+      {
+        lat: article.latitude,
+        lng: article.longitude
+      }
+      end
       # @articles = Article.select { |id, a| a[:category] == @category }
     else
-      @articles = Article.all
+      @articles = Article.geocoded
+      @markers = @articles.map do |article|
+      {
+        lat: article.latitude,
+        lng: article.longitude
+      }
+      end
     end
     #   if(params.has_key?(:category) && params.has_key?(:two))
     # Si j'ai un params, selon la valeur de mon params je filtre mon index
@@ -62,7 +74,7 @@ class ArticlesController < ApplicationController
   private
 
   def article_params
-    params.require(:article).permit(:name, :description, :price, :photo)
+    params.require(:article).permit(:name, :description, :price, :photo, :address, :latitude, :longitude)
   end
 
   def set_article
