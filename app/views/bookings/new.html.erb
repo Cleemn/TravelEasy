@@ -5,8 +5,8 @@
       <h1 class="form-title">Réserver</h1>
         <!-- `form_for([@restaurant, @review])`  POST **`restaurant_reviews_path`** -->
         <%= simple_form_for [@article, @booking] do |f| %>
-          <%= f.input :start_date %>
-          <%= f.input :end_date %>
+          <%= f.input :start_date, as: :string, input_html: {class:"date"} %>
+          <%= f.input :end_date, as: :string, input_html: {class:"date"} %>
           <div class="d-flex justify-content-center">
             <%= f.submit "Réserver", class: "btn btn-flat form-green" %>
           </div>
