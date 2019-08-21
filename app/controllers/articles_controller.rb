@@ -5,7 +5,24 @@ class ArticlesController < ApplicationController
   before_action :set_article, only: %i[show edit update destroy]
 
   def index
-    @articles = Article.all
+    # Si j'ai pas de params dans mon index
+    # raise
+    # if params[:category].present?
+    @cat = [ "valise", "cabine", "sac-a-dos" ]
+    # a.include?("b")   #=> true
+    # a.include?("z")   #=> false
+    @category = params[:category]
+    if @cat.include? @category
+      # if params[:category] != ""
+      # @restaurants = RESTAURANTS.select { |id, r| r[:category] == @category }
+      # restaurants = Restaurant.where("name LIKE ?", "%tour%")
+      @articles = Article.where(category: @category)
+      # @articles = Article.select { |id, a| a[:category] == @category }
+    else
+      @articles = Article.all
+    end
+    #   if(params.has_key?(:category) && params.has_key?(:two))
+    # Si j'ai un params, selon la valeur de mon params je filtre mon index
   end
 
   def show

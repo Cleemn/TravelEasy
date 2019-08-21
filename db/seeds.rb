@@ -14,12 +14,17 @@ paul.save
 clem = User.new(email: "clem@gmail.com", password:"clem00", admin: true)
 clem.save
 
-article1 = Article.new(name: "valise", price: 3, user_id: 2)
-article1.save
-article2 = Article.new(name: "sac de couchage", price: 4, user_id: 2 )
-article2.save
-article3 = Article.new(name: "duvet", price: 3, user_id: 1)
-article3.save
-article4 = Article.new(name: "valiseXL", price: 5, user_id: 2)
-article4.save
+Article.destroy_all
 
+article1 = Article.new(name: "valise", price: 3, user_id: 2, category: "cabine")
+article1.save
+article2 = Article.new(name: "sac à dos XXL", price: 4, user_id: 2, category: "sac-a-dos")
+article2.save
+article3 = Article.new(name: "duvet", price: 3, user_id: 1, category: "sac-a-dos")
+article3.save
+article4 = Article.new(name: "valiseXL", price: 5, user_id: 2, category: "valise")
+article4.save
+article5 = Article.new(name: "valiseXL", price: 5, user_id: 2, category: "valise")
+article5.save
+article5 = Article.new(name: "Set 2 valises", price: 5, user_id: 2, category: "valise")
+article5.save
