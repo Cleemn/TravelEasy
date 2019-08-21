@@ -1,11 +1,26 @@
-<h1>Nous vous confirmons la prise en comptre de votre réservation : <%= @article.name.capitalize %>
- du <%= @booking.start_date %> au <%= @booking.end_date %></h1>
+<div class="container">
+
+<h5>Nous vous confirmons la prise en comptre de votre demande <i class="fas fa-check"></i></h5>
+</span>
+
+<div class="card border-dark mb-3" style="max-width: 18rem;">
+  <div class="card-header"><%= @article.name.capitalize %></div>
+  <div class="card-body text-dark">
+    <p class="card-title">Pour une durée de <%= ((@booking.end_date.to_i - @booking.start_date.to_i)/86400) %> jours </p>
+    <p class="card-text"><ul>
+    <li>Du <%= @booking.end_date.strftime("%d/%m/%Y") %></li>
+    <li>Au <%= @booking.start_date.strftime("%d/%m/%Y") %></li>
+  </ul>
+<p> Total: <%= ((@booking.end_date.to_i - @booking.start_date.to_i)/86400) * @article.price %>€</p></p>
+  </div>
+</div>
 
 <p>Nous contactons le propriétaire pour la validation de votre réservation.</p>
-<p>Statut de votre réservation. <%= @booking.status %></p>
+<p>Statut de votre réservation: <%= @booking.status %></p>
 
-<p><%= @booking.article.description %></p>
 
 <!-- %= cl_image_tag @article.photo, height: 300, width: 400, crop: :fill %--->
 
 <%= link_to "Retour à la liste", articles_path %>
+
+</div>
