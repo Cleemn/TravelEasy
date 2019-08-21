@@ -17,7 +17,7 @@
           </div>
         <% end %>
 
-        <% if @pending_bookings.size > 0 %>
+        <% if current_user.articles != [] %>
           <div class="pending-bookings">
             <h3>Vous n'avez pas encore répondu à ces demandes de location :</h3>
             <ul>
