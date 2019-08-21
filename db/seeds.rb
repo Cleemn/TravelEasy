@@ -37,13 +37,13 @@ article7 = Article.new(name: "Valise", price: 3, description: "Cette valise cabi
 article7.save
 article8 = Article.new(name: "Grande valise", price: 3, description: "Valise bleue 30*40*40cm", user_id: 3, category: "valise", address: "31 Rue Saint-Jacques, 75005 Paris")
 article8.save
-article8 = Article.new(name: "Valise Somsonite", price: 3, description: "", user_id: 1, category: "valise", address: "69 Rue du Rocher, 75008 Paris")
-article8.save
-article8 = Article.new(name: "Valise 4 roues", price: 3, description: "Cadenas homologué TSA", user_id: 1, category: "valise", address: "54 rue du Landy, CLICHY")
-article8.save
-article8 = Article.new(name: "Grande valise", price: 3, description: "Fermeture éclair 10mm haute résistance.", user_id: 4, category: "valise", address: "10 Place du 11 Novembre 1918, 75010 Paris")
-article8.save
-article8 = Article.new(name: "Grande valise", price: 3, description: "Valise souple 100% Polyester Waterproof (tissu 900D résistant au déchirure, imperméable a l'eau)", user_id: 3, category: "valise", address: "14 Rue Crespin du Gast, 75011 Paris")
-article8.save
+article9 = Article.new(name: "Valise Somsonite", price: 3, description: "", user_id: 1, category: "valise", address: "69 Rue du Rocher, 75008 Paris")
+article9.save
+article10 = Article.new(name: "Valise 4 roues", price: 3, description: "Cadenas homologué TSA", user_id: 1, category: "valise", address: "54 rue du Landy, CLICHY")
+article10.save
+article11 = Article.new(name: "Grande valise", price: 3, description: "Fermeture éclair 10mm haute résistance.", user_id: 4, category: "valise", address: "10 Place du 11 Novembre 1918, 75010 Paris")
+article11.save
+article12 = Article.new(name: "Grande valise", price: 3, description: "Valise souple 100% Polyester Waterproof (tissu 900D résistant au déchirure, imperméable a l'eau)", user_id: 3, category: "valise", address: "14 Rue Crespin du Gast, 75011 Paris")
+article12.save
 
 
