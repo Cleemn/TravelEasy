@@ -5,7 +5,13 @@ class ArticlesController < ApplicationController
   before_action :set_article, only: %i[show edit update destroy]
 
   def index
-    @articles = Article.all
+    @articles = Article.geocoded
+    @markers = @articles.map do |article|
+      {
+        lat: article.latitude,
+        lng: article.longitude
+      }
+    end
   end
 
   def show
@@ -45,7 +51,7 @@ class ArticlesController < ApplicationController
   private
 
   def article_params
-    params.require(:article).permit(:name, :description, :price, :photo)
+    params.require(:article).permit(:name, :description, :price, :photo, :address, :latitude, :longitude)
   end
 
   def set_article
