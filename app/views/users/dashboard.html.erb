@@ -1,16 +1,22 @@
-<div id="dashboard">
-  <h1><%= "#{current_user.first_name}" %></h1>
-  <% if @articles.size > 0 %>
-    <div class="booked-articles">
-      <h3>Vos articles en location :</h3>
-      <ul>
-        <% @articles.each do |article| %>
-        <li>
-          <%= article.name %>
-          <%= article.description %>
-          <%= article.price %>
-        </li>
+<div class="container">
+  <div class="row">
+    <div class="col-8 offset-2">
+        <h1><%= "#{current_user.first_name}" %></h1>
+        <% if @articles.size > 0 %>
+          <div class="booked-articles">
+            <h3>Vos articles en location :</h3>
+            <ul>
+              <% @articles.each do |article| %>
+              <li>
+                <%= article.name %>
+                <%= article.description %>
+                <%= article.price %>
+              </li>
+              <% end %>
+            </ul>
+          </div>
         <% end %>
+
       </ul>
     </div>
   <% end %>
@@ -22,49 +28,50 @@
         <li>
           <%= "#{pending_booking.user.email.capitalize}" %> vous a envoyé une demande de
 
-          pour :
-          <%= pending_booking.article.name %>.
-         <%= link_to "Répondez à sa demande", article_bookings_path(pending_booking)%>
-        </li>
+                pour :
+                <%= pending_booking.article.name %>.
+               <%= link_to "Répondez à sa demande", article_bookings_path(pending_booking)%>
+              </li>
+              <% end %>
+            </ul>
+          </div>
         <% end %>
-      </ul>
-    </div>
-  <% end %>
 
-  <% if @rented_articles.size > 0 %>
-    <div class="articles-rented">
-      <h3>Les articles que vous louez :</h3>
-      <ul>
-        <% @rented_articles.each do |rented_article| %>
-        <li>
-          Vous êtes actuellement en possession de
-          <%= rented_article.article.name %>.
-          Votre location prend fin le
-          <%= rented_article.end_date.strftime("%-d %m %Y") %>
-        </li>
+        <% if @rented_articles.size > 0 %>
+          <div class="articles-rented">
+            <h3>Les articles que vous louez :</h3>
+            <ul>
+              <% @rented_articles.each do |rented_article| %>
+              <li>
+                Vous êtes actuellement en possession de
+                <%= rented_article.article.name %>.
+                Votre location prend fin le
+                <%= rented_article.end_date.strftime("%-d %m %Y") %>
+              </li>
+              <% end %>
+            </ul>
+          </div>
         <% end %>
-      </ul>
-    </div>
-  <% end %>
 
-  <% if @bookings.size > 0 %>
-    <div class="your-bookings">
-      <h3>Vos demandes de réservations :</h3>
-      <ul>
-        <% @bookings.each do |booking| %>
-        <li>
-          Vous avez réservé
-          <%= booking.article.name %>,
-          voici le status de votre demande:
-          <%= booking.status %>.
-        </li>
+        <% if @bookings.size > 0 %>
+          <div class="your-bookings">
+            <h3>Vos demandes de réservations :</h3>
+            <ul>
+              <% @bookings.each do |booking| %>
+              <li>
+                Vous avez réservé
+                <%= booking.article.name %>,
+                voici le status de votre demande:
+                <%= booking.status %>.
+              </li>
+              <% end %>
+            </ul>
+          </div>
         <% end %>
-      </ul>
+
+        <div class="update-profile">
+          <%= link_to "Apporter des modifications à votre profil", edit_user_registration_path %>
+        </div>
     </div>
-  <% end %>
-
-
-  <div class="update-profile">
-    <%= link_to "Apporter des modifications à votre profil", edit_user_registration_path %>
   </div>
-
+</div>
