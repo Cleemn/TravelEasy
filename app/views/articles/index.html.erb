@@ -6,9 +6,7 @@
         <% @articles.each do |article| %>
           <div class="card-product">
           <%= cl_image_tag article.photo, height: 100, width: 150, crop: :fill %>
-
             <div class="card-product-infos">
-
               <h2><%= link_to article.name.capitalize, article_path(article) %></h2>
               <div class="details">
                 <p><%=article.description%></p>
