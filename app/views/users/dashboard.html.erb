@@ -7,31 +7,25 @@
             <h3>Vos articles en location :</h3>
             <ul>
               <% @articles.each do |article| %>
-              <li>
-                <%= article.name %>
-                <%= article.description %>
-                <%= article.price %>
-              </li>
+                <li>
+                  <%= article.name %>
+                  <%= article.description %>
+                  <%= article.price %>
+                </li>
               <% end %>
             </ul>
           </div>
         <% end %>
 
-      </ul>
-    </div>
-  <% end %>
   <% if current_user.articles != [] %>
     <div class="pending-bookings">
       <h3>Vous n'avez pas encore répondu à ces demandes de location :</h3>
       <ul>
         <% @pending_bookings_as_owner.each do |pending_booking| %>
         <li>
-          <%= "#{pending_booking.user.email.capitalize}" %> vous a envoyé une demande de
-
-
-                pour :
+          <%= "#{pending_booking.user.email.capitalize}" %> vous a envoyé une demande pour :
                 <%= pending_booking.article.name %>.
-               <%= link_to "Répondez à sa demande", article_bookings_path(pending_booking)%>
+                <%= link_to "Répondez à sa demande", article_bookings_path(pending_booking)%>
               </li>
               <% end %>
             </ul>
