@@ -28,6 +28,7 @@
         <li>
           <%= "#{pending_booking.user.email.capitalize}" %> vous a envoyé une demande de
 
+
                 pour :
                 <%= pending_booking.article.name %>.
                <%= link_to "Répondez à sa demande", article_bookings_path(pending_booking)%>
