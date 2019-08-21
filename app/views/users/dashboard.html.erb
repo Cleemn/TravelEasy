@@ -1,24 +1,71 @@
-<h1><%= "${@user.first_name}" %></h1>
-<!-- User.first_name? current_user.first_name? -->
-
-<h3 class="booked-articles">Vos articles en location</h3>
-<ul>
-  <% @articles.each do |article| %>
-  <li>
-    <%= article.name %>
-    <%= article.description %>
-    <%= article.price %>
-  </li>
+<div id="dashboard">
+  <h1><%= "#{current_user.first_name}" %></h1>
+  <% if @articles.size > 0 %>
+    <div class="booked-articles">
+      <h3>Vos articles en location :</h3>
+      <ul>
+        <% @articles.each do |article| %>
+        <li>
+          <%= article.name %>
+          <%= article.description %>
+          <%= article.price %>
+        </li>
+        <% end %>
+      </ul>
+    </div>
   <% end %>
-</ul>
 
-<h3 class="pending-bookings">Vous avez reçu ces demandes de location</h3>
+  <% if @pending_bookings.size > 0 %>
+    <div class="pending-bookings">
+      <h3>Vous n'avez pas encore répondu à ces demandes de location :</h3>
+      <ul>
+        <% @pending_bookings.each do |pending_booking| %>
+        <li>
+          <%= "#{pending_booking.user.email.capitalize}" %> vous a envoyé une demande de
 
-<h3 class="articles-rented">Les articles que vous louez</h3>
+          pour :
+          <%= pending_booking.article.name %>.
+         <%= link_to "Répondez à sa demande", article_bookings_path(pending_booking)%>
+        </li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
 
-<h3 class="your-bookings">Vos demandes de réservations en attente</h3>
+  <% if @rented_articles.size > 0 %>
+    <div class="articles-rented">
+      <h3>Les articles que vous louez :</h3>
+      <ul>
+        <% @rented_articles.each do |rented_article| %>
+        <li>
+          Vous êtes actuellement en possession de
+          <%= rented_article.article.name %>.
+          Votre location prend fin le
+          <%= rented_article.end_date.strftime("%-d %m %Y") %>
+        </li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
 
-<%= link_to "Déconnexion", destroy_user_session_path  %>
-<%= link_to "Supprimer votre compte", method: :delete, data: { confirm: "Voulez-vous vraiment supprimer votre compte?"} %>
+  <% if @bookings.size > 0 %>
+    <div class="your-bookings">
+      <h3>Vos demandes de réservations :</h3>
+      <ul>
+        <% @bookings.each do |booking| %>
+        <li>
+          Vous avez réservé
+          <%= booking.article.name %>,
+          voici le status de votre demande:
+          <%= booking.status %>.
+        </li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
 
-<!-- ou cancel_user_registration_path ? -->
+
+  <div class="update-profile">
+    <%= link_to "Apporter des modifications à votre profil", edit_user_registration_path %>
+  </div>
+
