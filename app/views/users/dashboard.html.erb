@@ -17,15 +17,14 @@
           </div>
         <% end %>
 
-        <% if current_user.articles != [] %>
-          <div class="pending-bookings">
-            <h3>Vous n'avez pas encore répondu à ces demandes de location :</h3>
-            <ul>
-              <% @pending_bookings.each do |pending_booking| %>
-              <li>
-                <%= "#{pending_booking.user.email.capitalize}" %> vous a envoyé une demande de
 
-                pour :
+  <% if current_user.articles != [] %>
+    <div class="pending-bookings">
+      <h3>Vous n'avez pas encore répondu à ces demandes de location :</h3>
+      <ul>
+        <% @pending_bookings_as_owner.each do |pending_booking| %>
+        <li>
+          <%= "#{pending_booking.user.email.capitalize}" %> vous a envoyé une demande pour :
                 <%= pending_booking.article.name %>.
                <%= link_to "Répondez à sa demande", article_bookings_path(pending_booking)%>
               </li>
