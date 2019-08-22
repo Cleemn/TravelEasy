@@ -17,7 +17,7 @@
               <p><%= @article.description%></p>
               <div class="reservation d-flex justify-content-around align-items-center">
                 <p class="princing">Prix : <strong><%= @article.price%>€/Jour</strong></p>
-                <%= link_to "Réserver", new_article_booking_path(@article), class:"btn btn-success mx-2" %>
+
               </div>
             </div>
           </div>
@@ -25,6 +25,18 @@
     </div>
     <div class="col-12 col-lg-6">
       <%= cl_image_tag @article.photo, height: 400, width: 500, crop: :fill %>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-4 offset-4">
+      <h1 class="form-title">Réserver</h1>
+      <%= simple_form_for [@article, @booking], url: article_bookings_url(@article) do |f| %>
+        <%= f.input :start_date, as: :string, input_html: {class:"date"} %>
+        <%= f.input :end_date, as: :string, input_html: {class:"date"} %>
+        <div class="d-flex justify-content-center">
+          <%= f.submit "Réserver", class: "btn btn-flat form-green" %>
+        </div>
+      <% end %>
     </div>
   </div>
 </div>
