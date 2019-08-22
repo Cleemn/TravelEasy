@@ -6,6 +6,7 @@ class BookingsController < ApplicationController
   def new
     @booking = Booking.new
     @article = Article.find(params[:article_id])
+    @booking.article = @article
   end
 
   def create
