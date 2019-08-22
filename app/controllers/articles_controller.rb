@@ -51,6 +51,11 @@ class ArticlesController < ApplicationController
 
   def show
     authorize @article
+    @booking = Booking.new
+    @markers = [{
+        lat: @article.latitude,
+        lng: @article.longitude
+      }]
   end
 
   def new
