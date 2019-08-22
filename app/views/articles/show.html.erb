@@ -1,26 +1,42 @@
-<div class="container container-card-show card-item-show mt-3 p-2 text-center">
-  <div class="row p-3">
-    <div class="d-flex">
-      <div class="col-6">
-        <h1><%= @article.name.capitalize %></h1>
-        <p><%= @article.description %></p>
-        <h6><%= @article.price %>€/j </h6>
-      </div>
-      <div class="col-6">
-        <%= cl_image_tag @article.photo, height: 200, width: 300, crop: :fill %>
-      </div>
+<div class="container p-3">
+  <div class="row d-flex align-items-center">
+    <div class="col-12 col-lg-6">
+        <div class="card-show">
+          <div class="card-product-infos">
+            <div class="d-flex justify-content-between d-flex align-items-center">
+              <h1><%= @article.name %></h1>
+              <div class="icons p-2">
+                <%= link_to edit_article_path(@article), class:"p-2" do %><i class="fa fa-pencil fa-2x" style="color:#61D095"></i><% end %>
+                <%= link_to article_path, method: :delete, data: { confirm: "Are you sure?" }, class:"p-2" do %><i class="fas fa-trash fa-2x" style="color:#439775"></i>
+                <% end %>
+              </div>
+            </div>
+            <div>
+              <p>Categorie : <strong><%= @article.category.split.map(&:capitalize)*' ' %></strong></p>
+              <p>Adresse : <strong><%= @article.address.split.map(&:capitalize)*' ' %></strong></p>
+              <p><%= @article.description%></p>
+              <div class="reservation d-flex justify-content-around align-items-center">
+                <p class="princing">Prix : <strong><%= @article.price%>€/Jour</strong></p>
+
+              </div>
+            </div>
+          </div>
+        </div>
+    </div>
+    <div class="col-12 col-lg-6">
+      <%= cl_image_tag @article.photo, height: 400, width: 500, crop: :fill %>
     </div>
   </div>
-  <div class="row d-flex justify-content-left ml-3">
-    <div class="">
-      <% if policy(@article).edit? %>
-        <%= link_to "Editer", edit_article_path(@article), class:"btn btn-primary mx-2" %>
+  <div class="row">
+    <div class="col-4 offset-4">
+      <h1 class="form-title">Réserver</h1>
+      <%= simple_form_for [@article, @booking], url: article_bookings_url(@article) do |f| %>
+        <%= f.input :start_date, as: :string, input_html: {class:"date"} %>
+        <%= f.input :end_date, as: :string, input_html: {class:"date"} %>
+        <div class="d-flex justify-content-center">
+          <%= f.submit "Réserver", class: "btn btn-flat form-green" %>
+        </div>
       <% end %>
-      <% if policy(@article).destroy? %>
-        <%= link_to "Supprimer", article_path, method: :delete, data: { confirm: "Are you sure?" }, class:"btn btn-danger mx-2" %>
-      <% end %>
-      <%= link_to "Retour à la liste", articles_path, class:"btn btn-secondary mx-2" %>
-      <%= link_to "Réserver", new_article_booking_path(@article), class:"btn btn-secondary mx-2" %>
     </div>
   </div>
 </div>

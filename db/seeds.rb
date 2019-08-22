@@ -10,10 +10,8 @@ jean = User.new(email: "jean@gmail.com", password:"jeanjean" )
 jean.save
 paul = User.new(email: "paul@gmail.com", password:"paulpaul")
 paul.save
-
 deborah = User.new(email: "deborah@gmail.com", password:"deborah")
 paul.save
-
 clem = User.new(email: "clem@gmail.com", password:"clem00", admin: true)
 clem.save
 
@@ -27,7 +25,7 @@ article4 = Article.new(name: "Valise Trolley Cabine", price: 5, description: "Su
 article4.save
 article5 = Article.new(name: "valiseXL", price: 5, description: "Valise", user_id: 2, category: "valise", address: "120 rue de la FOlie Mericourt, 75011 PARIS")
 article5.save
-article5 = Article.new(name: "Set 2 valises", price: 5, description: "Deux grandes valise rouges", user_id: 3, category: "valise", address: "30 rue de la FOlie Mericourt, 75011 PARIS")
+article5 = Article.new(name: "Set 2 valises", price: 5, description: "Deux grandes valise rouges", user_id: 3, category: "valise", address: "30 rue de la FOlie Mericourt, 75011 PARIS", photo:"https://www.mesbagages.com/images/bagages/valise-madisson-382677.jpg")
 article5.save
 article6 = Article.new(name: "Valise cabine rigide", price: 3, description: "Valise bleue 30*50*40cm", user_id: 4, category: "cabine", address: "12 avenue de la republique, 75011 PARIS")
 article6.save
