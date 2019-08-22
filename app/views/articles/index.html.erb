@@ -4,20 +4,6 @@
   <div class="row">
     <div class="col-12 col-lg-6">
       <div class="card-alone">
-        <% if params[:query].present?%>
-         <% @articles.each do |article| %>
-          <div class="card-product">
-            <%= cl_image_tag article.searchable.photo %>
-              <div class="card-product-infos">
-               <h2><%= link_to article.searchable.name.capitalize, article_path(article) %></h2>
-              <div class="details">
-                <p><%=article.searchable.description%></p>
-                <p class="princing"><%=article.searchable.price%>€/Jour</p>
-              </div>
-            </div>
-          </div>
-        <% end %>
-        <% else   %>
         <% @articles.each do |article| %>
           <div class="card-product">
           <%= cl_image_tag article.photo %>
@@ -29,7 +15,6 @@
                 </div>
             </div>
           </div>
-        <% end %>
         <% end %>
       </div>
     </div>

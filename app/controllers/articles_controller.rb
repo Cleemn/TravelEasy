@@ -5,21 +5,19 @@ class ArticlesController < ApplicationController
   before_action :set_article, only: %i[show edit update destroy]
 
   def index
-    @articles = Article.geocoded
-    @markers = @articles.map do |article|
-      {
-        lat: article.latitude,
-        lng: article.longitude,
-        infoWindow: render_to_string(partial: "info_window", locals: { article: article })
-      }
-    end
-
     if params[:query].present?
-      @articles = PgSearch.multisearch(params[:query])
+      @articles = PgSearch.multisearch(params[:query]).map{|result| result.searchable}
       # @articles_for_map = @articles.where.not(latitude: nil, longitude:nil)
     else
       @articles = Article.all
       # @articles_for_map = @articles.where.not(latitude: nil, longitude:nil)
+    end
+    @markers = @articles.map do |article|
+      {
+        lat: article.latitude,
+        lng: article.longitude
+        infoWindow: render_to_string(partial: "info_window", locals: { article: article })
+      } if !article.latitude.nil?
     end
 
 
