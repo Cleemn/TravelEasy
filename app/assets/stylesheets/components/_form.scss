@@ -12,7 +12,6 @@
   margin-bottom: 20px;
 }
 
-
 .col-4 {
   overflow: hidden;
   background: white;
@@ -25,3 +24,24 @@
 .form-green{
   margin-top: 20px;
 }
+
+.search .btn-success {
+ color: white;
+}
+.search {
+  display: flex;
+  position: absolute;
+  margin-left: 70px;
+  overflow: hidden;
+  box-shadow: 0 0 15px rgba(0,0,0,0.1);
+  display: flex;
+  align-items: left;
+  color: white;
+}
+
+.form-search {
+
+}
+
+
+
