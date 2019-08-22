@@ -7,7 +7,9 @@
               <h1><%= @article.name %></h1>
               <div class="icons p-2">
                 <% if policy(@article).edit? %>
-                  <%= link_to edit_article_path(@article), class:"p-2" do %><i class="fa fa-pencil fa-2x" style="color:#61D095"></i><% end %>
+                  <%= link_to edit_article_path(@article), class: "p-2" do %>
+                    <i class="fas fa-pencil-alt" style="color:#61D095"></i>
+                  <% end %>
                 <% end %>
                 <% if policy(@article).destroy? %>
                   <%= link_to article_path, method: :delete, data: { confirm: "Are you sure?" }, class:"p-2" do %><i class="fas fa-trash fa-2x" style="color:#439775"></i>
@@ -24,7 +26,7 @@
               </div>
             </div>
             <% if policy(Booking.new(article_id: @article.id)).create? %>
-              <div class=""> 
+              <div class="">
                 <h1 class="form-title">Réserver</h1>
                 <%= simple_form_for [@article, @booking], url: article_bookings_url(@article) do |f| %>
                   <%= f.input :start_date, as: :string, input_html: {class:"date"} %>
