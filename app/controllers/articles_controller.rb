@@ -5,40 +5,55 @@ class ArticlesController < ApplicationController
   before_action :set_article, only: %i[show edit update destroy]
 
   def index
-    # Si j'ai pas de params dans mon index
+    if params[:query].present?
+      @articles = PgSearch.multisearch(params[:query]).map{|result| result.searchable}
+      # @articles_for_map = @articles.where.not(latitude: nil, longitude:nil)
+    else
+      @articles = Article.all
+      # @articles_for_map = @articles.where.not(latitude: nil, longitude:nil)
+    end
+    @markers = @articles.map do |article|
+      {
+        lat: article.latitude,
+        lng: article.longitude
+        infoWindow: render_to_string(partial: "info_window", locals: { article: article })
+      } if !article.latitude.nil?
+    end
+
+
+      # Si j'ai pas de params dans mon index
     # raise
     # if params[:category].present?
-    @cat = [ "valise", "cabine", "sac-a-dos" ]
-    # a.include?("b")   #=> true
-    # a.include?("z")   #=> false
-    @category = params[:category]
-    if @cat.include? @category
-      # if params[:category] != ""
-      # @restaurants = RESTAURANTS.select { |id, r| r[:category] == @category }
-      # restaurants = Restaurant.where("name LIKE ?", "%tour%")
-      @articles = Article.geocoded.where(category: @category)
-      @markers = @articles.map do |article|
-      {
-        lat: article.latitude,
-        lng: article.longitude
-      }
-      end
-      # @articles = Article.select { |id, a| a[:category] == @category }
-    else
-      @articles = Article.geocoded
-      @markers = @articles.map do |article|
-      {
-        lat: article.latitude,
-        lng: article.longitude
-      }
-      end
-    end
+    # @cat = [ "valise", "cabine", "sac-a-dos" ]
+    # # a.include?("b")   #=> true
+    # # a.include?("z")   #=> false
+    # @category = params[:category]
+    # if @cat.include? @category
+    #   # if params[:category] != ""
+    #   # @restaurants = RESTAURANTS.select { |id, r| r[:category] == @category }
+    #   # restaurants = Restaurant.where("name LIKE ?", "%tour%")
+    #   @articles = Article.geocoded.where(category: @category)
+    #   @markers = @articles.map do |article|
+    #   {
+    #     lat: article.latitude,
+    #     lng: article.longitude
+    #   }
+    #   end
+    #   # @articles = Article.select { |id, a| a[:category] == @category }
+    # else
+
+
     #   if(params.has_key?(:category) && params.has_key?(:two))
     # Si j'ai un params, selon la valeur de mon params je filtre mon index
   end
 
   def show
     authorize @article
+    @booking = Booking.new
+    @markers = [{
+        lat: @article.latitude,
+        lng: @article.longitude
+      }]
   end
 
   def new
