@@ -8,4 +8,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
   mount_uploader :photo, PhotoUploader
   # validates :name, :address, presence: true
+
+  include PgSearch
+  multisearchable against: [:first_name, :last_name ]
 end

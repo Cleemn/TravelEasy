@@ -8,6 +8,19 @@
     <span class="navbar-toggler-icon"></span>
   </button>
 
+  <div class="search">
+    <div class="form-search">
+      <%= form_tag articles_path, method: :get do %>
+        <%= text_field_tag :query,
+          params[:query],
+          class: "form-control",
+          placeholder: "Votre recherche"%>
+    </div>
+    <div class="btn-search">
+      <%= submit_tag "Search", class: "btn btn-success" %>
+      <% end %>
+    </div>
+  </div>
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
