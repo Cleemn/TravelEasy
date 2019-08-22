@@ -1,0 +1,17 @@
+.image {
+  height: 500px;
+  width: 500px;
+  object-fit: contain;
+}
+
+@media (max-width: 1200px) {
+  .image {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 575px) {
+  .image {
+    grid-template-columns: 1fr;
+  }
+}
