@@ -32,14 +32,14 @@ class BookingsController < ApplicationController
     @booking = Booking.find(params[:booking_id])
     @booking.status = "accepted"
     @booking.save
-    redirect_to article_bookings_path(@booking)
+    redirect_to dashboard_path
   end
 
   def decline
     @booking = Booking.find(params[:booking_id])
     @booking.status = "declined"
     @booking.save
-    redirect_to article_bookings_path(@booking)
+    redirect_to dashboard_path
   end
 
   private
@@ -48,3 +48,6 @@ class BookingsController < ApplicationController
     params.require(:booking).permit(:start_date, :end_date, :user_id, :article_id, :status)
   end
 end
+
+
+# passer la page bookings en prive
