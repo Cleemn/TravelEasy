@@ -1,6 +1,7 @@
 class Article < ApplicationRecord
   belongs_to :user
   has_many :bookings
+  has_many :messages
   has_many :reviews
   validates :name, presence: true
   validates :price, presence: true
