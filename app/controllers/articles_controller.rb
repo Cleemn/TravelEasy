@@ -8,7 +8,7 @@ class ArticlesController < ApplicationController
     # Si j'ai pas de params dans mon index
     # raise
     # if params[:category].present?
-    @cat = [ "valise", "cabine", "sac-a-dos" ]
+    @cat = ["valise", "cabine", "sac-a-dos"]
     # a.include?("b")   #=> true
     # a.include?("z")   #=> false
     @category = params[:category]

@@ -11,13 +11,21 @@
     <%= stylesheet_pack_tag 'application', media: 'all' %>
   </head>
   <body>
-    <%= render 'shared/flashes' %>
-    <%= render 'shared/navbar' %>
-    <%= yield %>
-    <%= render 'shared/footer' %>
-    <%= javascript_include_tag 'application' %>
-    <%= javascript_pack_tag 'application' %>
-    <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.9"></script>
-    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <!--div class="wrapper"-->
+      <!--div class="page-header"-->
+        <%= render 'shared/flashes' %>
+        <%= render 'shared/navbar' %>
+      <!--/div-->
+      <!--div class="page-body"-->
+        <%= yield %>
+      <!--/div-->
+      <!--div class="page-footer"-->
+        <%= render 'shared/footer' %>
+      <!--/div-->
+    <!--/div-->
+      <%= javascript_include_tag 'application' %>
+      <%= javascript_pack_tag 'application' %>
+      <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.9"></script>
+      <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
   </body>
 </html>
