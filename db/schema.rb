@@ -43,6 +43,14 @@ ActiveRecord::Schema.define(version: 2019_08_22_163227) do
     t.index ["user_id"], name: "index_bookings_on_user_id"
   end
 
+  create_table "pg_search_documents", force: :cascade do |t|
+    t.text "content"
+    t.string "searchable_type"
+    t.bigint "searchable_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["searchable_type", "searchable_id"], name: "index_pg_search_documents_on_searchable_type_and_searchable_id"
+  end
 
   create_table "messages", force: :cascade do |t|
     t.text "content"
@@ -57,21 +65,21 @@ ActiveRecord::Schema.define(version: 2019_08_22_163227) do
 
   create_table "reviews", force: :cascade do |t|
     t.text "content"
+    t.string "searchable_type"
+    t.bigint "searchable_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["searchable_type", "searchable_id"], name: "index_pg_search_documents_on_searchable_type_and_searchable_id"
+  end
+
+  create_table "reviews", force: :cascade do |t|
+    t.text "content"
     t.bigint "article_id"
     t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["article_id"], name: "index_reviews_on_article_id"
     t.index ["user_id"], name: "index_reviews_on_user_id"
-  end
-
-  create_table "pg_search_documents", force: :cascade do |t|
-    t.text "content"
-    t.string "searchable_type"
-    t.bigint "searchable_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["searchable_type", "searchable_id"], name: "index_pg_search_documents_on_searchable_type_and_searchable_id"
   end
 
   create_table "users", force: :cascade do |t|

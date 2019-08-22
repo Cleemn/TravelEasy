@@ -12,13 +12,15 @@ class ArticlesController < ApplicationController
       @articles = Article.all
       # @articles_for_map = @articles.where.not(latitude: nil, longitude:nil)
     end
+
     @markers = @articles.map do |article|
       {
         lat: article.latitude,
-        lng: article.longitude
+        lng: article.longitude,
         infoWindow: render_to_string(partial: "info_window", locals: { article: article })
       } if !article.latitude.nil?
     end
+  end
 
 
       # Si j'ai pas de params dans mon index
@@ -45,7 +47,7 @@ class ArticlesController < ApplicationController
 
     #   if(params.has_key?(:category) && params.has_key?(:two))
     # Si j'ai un params, selon la valeur de mon params je filtre mon index
-  end
+
 
   def show
     authorize @article
