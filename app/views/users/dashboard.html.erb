@@ -1,72 +1,94 @@
 <div class="container">
   <div class="row">
     <div class="col-8 offset-2">
-        <h1><%= "#{current_user.first_name}" %></h1>
-        <% if @articles.size > 0 %>
-          <div class="booked-articles">
-            <h3>Vos articles en location :</h3>
-            <ul>
-              <% @articles.each do |article| %>
-                <li>
-                  <%= article.name %>
-                  <%= article.description %>
-                  <%= article.price %>
-                </li>
-              <% end %>
-            </ul>
-          </div>
-        <% end %>
+      <h1><%= "#{current_user.first_name}" %></h1>
 
-  <% if current_user.articles != [] %>
-    <div class="pending-bookings">
-      <h3>Vous n'avez pas encore répondu à ces demandes de location :</h3>
-      <ul>
-        <% @pending_bookings_as_owner.each do |pending_booking| %>
-        <li>
-          <%= "#{pending_booking.user.email.capitalize}" %> vous a envoyé une demande pour :
-                <%= pending_booking.article.name %>.
-                <%= link_to "Répondez à sa demande", article_bookings_path(pending_booking)%>
-              </li>
-              <% end %>
-            </ul>
-          </div>
-        <% end %>
-
-        <% if @rented_articles.size > 0 %>
-          <div class="articles-rented">
-            <h3>Les articles que vous louez :</h3>
-            <ul>
-              <% @rented_articles.each do |rented_article| %>
+<!-- as OWNER part -->
+      <% if @articles.size > 0 %>
+        <div class="my-proposed-articles">
+          <h3>Vos articles proposés à la location :</h3>
+          <ul>
+            <% @articles.each do |article| %>
               <li>
-                Vous êtes actuellement en possession de
-                <%= rented_article.article.name %>.
-                Votre location prend fin le
-                <%= rented_article.end_date.strftime("%-d %m %Y") %>
+                <%= link_to "#{article.name}", article_path(article) %> :
+                <%= article.description %>
+                - <%= article.price %> €
               </li>
-              <% end %>
-            </ul>
-          </div>
-        <% end %>
-
-        <% if @bookings.size > 0 %>
-          <div class="your-bookings">
-            <h3>Vos demandes de réservations :</h3>
-            <ul>
-              <% @bookings.each do |booking| %>
-              <li>
-                Vous avez réservé
-                <%= booking.article.name %>,
-                voici le status de votre demande:
-                <%= booking.status %>.
-              </li>
-              <% end %>
-            </ul>
-          </div>
-        <% end %>
-
-        <div class="update-profile">
-          <%= link_to "Apporter des modifications à votre profil", edit_user_registration_path %>
+            <% end %>
+          </ul>
         </div>
+      <% end %>
+
+      <%  unless @pending_bookings_as_owner.length == 0 %>
+        <div class="pending-bookings-as-owner">
+          <h3>Vous n'avez pas encore répondu à ces demandes de location :</h3>
+          <ul>
+            <% @pending_bookings_as_owner.each do |pending_booking| %>
+              <li>
+                <%= "#{pending_booking.user.email.capitalize}" %> vous a envoyé une demande pour :
+                <%= pending_booking.article.name %>.
+                <%= link_to "Répondez à sa demande", booking_path(pending_booking)%>
+              </li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
+<!-- ne faire apparaitre que s'il a vraiment recu des demandes -->
+
+      <% unless @validated_bookings_as_owner.length == 0 %>
+        <div class="validated-bookings-as-owner">
+          <h3>Vos articles actuellement en location:</h3>
+          <ul>
+            <% @validated_bookings_as_owner.each do |validated_booking| %>
+              <li>
+                <%= validated_booking.article.name %>
+                du <%= validated_booking.start_date.strftime("%-d %m %Y") %>
+                au <%= validated_booking.end_date.strftime("%-d %m %Y") %>
+              </li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
+
+<!--  <#% if current_user.bookings != [] %> -->
+<!-- <#%= if validated_bookings_as_user.size > 0 %> -->
+      <% if @validated_bookings_as_user.length > 0 %>
+        <div class="validated-bookings-as-user">
+          <h3>Vos demandes de location ont été acceptées:</h3>
+          <ul>
+            <% @validated_bookings_as_user.each do |validated_booking| %>
+              <li>
+                <%= validated_booking.article.name %> -
+                du <%= validated_booking.start_date.strftime("%-d %m %Y") %>
+                au <%= validated_booking.end_date.strftime("%-d %m %Y") %>
+              </li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
+      <!-- titre s'affiche, mettre if else -->
+
+      <% if @pending_bookings_as_user.size > 0 %>
+        <div class="your-bookings-as-user">
+          <h3>Vos demandes de réservations en attente:</h3>
+          <ul>
+            <% @pending_bookings_as_user.each do |pending_booking| %>
+            <li>
+              Vous n'avez toujours pas reçu de réponse pour la location de l'article suivant:
+              <%= pending_booking.article.name %>.
+            </li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
+
+    <div class="update-profile">
+      <%= link_to "Apporter des modifications à votre profil", edit_user_registration_path %>
+    </div>
+
     </div>
   </div>
 </div>
+
+
+<!--  if, colonne dans ma table articles, colonne booked, boolean, clicker , if il est reserve ca apparait  -->

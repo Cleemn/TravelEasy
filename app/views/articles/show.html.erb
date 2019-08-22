@@ -6,8 +6,12 @@
             <div class="d-flex justify-content-between d-flex align-items-center">
               <h1><%= @article.name %></h1>
               <div class="icons p-2">
-                <%= link_to edit_article_path(@article), class:"p-2" do %><i class="fa fa-pencil fa-2x" style="color:#61D095"></i><% end %>
-                <%= link_to article_path, method: :delete, data: { confirm: "Are you sure?" }, class:"p-2" do %><i class="fas fa-trash fa-2x" style="color:#439775"></i>
+                <% if policy(@article).edit? %>
+                  <%= link_to edit_article_path(@article), class:"p-2" do %><i class="fa fa-pencil fa-2x" style="color:#61D095"></i><% end %>
+                <% end %>
+                <% if policy(@article).destroy? %>
+                  <%= link_to article_path, method: :delete, data: { confirm: "Are you sure?" }, class:"p-2" do %><i class="fas fa-trash fa-2x" style="color:#439775"></i>
+                  <% end %>
                 <% end %>
               </div>
             </div>
@@ -19,16 +23,18 @@
                 <p class="princing">Prix : <strong><%= @article.price%>€/Jour</strong></p>
               </div>
             </div>
-            <div class="">
-              <h1 class="form-title">Réserver</h1>
-              <%= simple_form_for [@article, @booking], url: article_bookings_url(@article) do |f| %>
-                <%= f.input :start_date, as: :string, input_html: {class:"date"} %>
-                <%= f.input :end_date, as: :string, input_html: {class:"date"} %>
-                <div class="d-flex justify-content-center">
-                  <%= f.submit "Réserver", class: "btn btn-flat form-green" %>
-                </div>
-              <% end %>
-            </div>
+            <% if policy(Booking.new(article_id: @article.id)).create? %>
+              <div class=""> 
+                <h1 class="form-title">Réserver</h1>
+                <%= simple_form_for [@article, @booking], url: article_bookings_url(@article) do |f| %>
+                  <%= f.input :start_date, as: :string, input_html: {class:"date"} %>
+                  <%= f.input :end_date, as: :string, input_html: {class:"date"} %>
+                  <div class="d-flex justify-content-center">
+                    <%= f.submit "Réserver", class: "btn btn-flat form-green" %>
+                  </div>
+                <% end %>
+              </div>
+            <% end %>
           </div>
         </div>
     </div>
@@ -56,7 +62,5 @@
         </div>
       </div>
     </div>
-  </div>
-  <div class="row">
   </div>
 </div>
