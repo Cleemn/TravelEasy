@@ -16,7 +16,7 @@
 
 <div class="container">
   <div class="row d-flex">
-    <div class="col-12 col-lg-6 pt-3">
+    <div class="col-12 col-lg-8 offset-2 pt-3">
       <% if @articles.size > 0 %>
         <div class="my-proposed-articles">
           <h3 class="text-center pb-2">Vos articles proposés à la location :</h3>
@@ -39,16 +39,7 @@
         </div>
       <% end %>
     </div>
-    <div class="col-12 col-lg-6 pt-3">
-      <h3 class="text-center pb-2">Mon profil</h3>
-      <div class="container card-product p-3">
-        <%= cl_image_tag @user.photo %>
-        <h3><%= @user.first_name %></h3>
-        <h3><%= @user.last_name %></h3>
-        <h3><%= @user.address %></h3>
-          <%= link_to "Apporter des modifications à votre profil", edit_user_registration_path, class:"btn btn-success" %>
-      </div>
-    </div>
+
   </div>
 </div>
 

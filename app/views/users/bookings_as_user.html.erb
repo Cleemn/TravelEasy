@@ -48,16 +48,19 @@
       <% if @pending_bookings_as_user.size > 0 %>
         <div class="your-bookings-as-user">
           <ul>
-            <div class="card-square p-2">
-            <% @pending_bookings_as_user.each do |pending_booking| %>
-            <li>
-              <div class="text center">
-                <%= cl_image_tag pending_booking.article.photo %>
-                <%= pending_booking.article.name %>
-                <%= ((pending_booking.end_date.to_i - pending_booking.start_date.to_i)/86400) %> days
-              </div>
-            </li>
-            <% end %>
+
+            <div class="card-alone">
+              <% @pending_bookings_as_user.each do |pending_booking| %>
+                <li>
+                  <div class="card-product d-flex">
+                    <%= cl_image_tag pending_booking.article.photo %>
+                    <div class="contenu p-3">
+                    <p class="text center">
+                    <%= pending_booking.article.name %> : <%= ((pending_booking.end_date.to_i - pending_booking.start_date.to_i)/86400) %> days</p>
+                    </div>
+                  </div>
+                </li>
+              <% end %>
             </div>
           </ul>
         </div>

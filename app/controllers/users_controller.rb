@@ -33,6 +33,7 @@ class UsersController < ApplicationController
       end
     end
 
+
   # as USER
     # @rented_articles_as_user = current_user.bookings.where(status: 'accept')
     # # les articles que je suis en train de louer

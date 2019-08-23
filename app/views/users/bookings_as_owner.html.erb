@@ -26,7 +26,7 @@
           <ul>
             <% @pending_bookings_as_owner.each do |pending_booking| %>
               <li>
-                <%= "#{pending_booking.user.email.capitalize}" %> vous a envoyé une demande pour :
+                <%= "#{pending_booking.user.first_name}" %> vous a envoyé une demande pour :
                 <%= pending_booking.article.name %>.
                 <%= link_to "Répondez à sa demande", booking_path(pending_booking)%>
               </li>
@@ -42,10 +42,10 @@
           <ul>
             <% @validated_bookings_as_owner.each do |validated_booking| %>
               <li>
-                <%= validated_booking.article.name %>
-                du <%= validated_booking.start_date.strftime("%A %d %B %Y") %>
-                au <%= validated_booking.end_date.strftime("%A %d %B %Y") %>
-                - <%= ((validated_booking.end_date.to_i - validated_booking.start_date.to_i)/86400) %> jours
+                <strong><%= validated_booking.article.name %></strong>
+                from <%= validated_booking.start_date.strftime("%A %d %B %Y") %>
+                to <%= validated_booking.end_date.strftime("%A %d %B %Y") %>
+                - <strong><%= ((validated_booking.end_date.to_i - validated_booking.start_date.to_i)/86400) %> jours</strong>
               </li>
             <% end %>
           </ul>
