@@ -5,6 +5,14 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+Message.destroy_all
+Review.destroy_all
+Booking.destroy_all
+Article.destroy_all
+User.destroy_all
+
+
+
 
 jean = User.new(email: "jean@gmail.com", password:"jeanjean", first_name: "Jean", last_name: "Valjean"  )
 jean.save
@@ -22,7 +30,7 @@ gaspard = User.new(email: "gaspard@gmail.com", password:"gaspard", first_name: "
 gaspard.save
 
 
-Article.destroy_all
+
 
 article1 = Article.new(name: "Valise", price: 3, description: "Valise bleue 30*50*40cm", user_id: 1, category: "Valise", address: "90 rue de la Folie Mericourt, 75011 PARIS")
 article1.save
