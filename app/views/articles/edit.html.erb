@@ -7,7 +7,7 @@
         <!-- % @arr_category_code = ['valise', 'cabine', 'sac-a-dos'] %-->
         <!-- % @arr_category_text = ['valise', 'valise cabine', 'sac à dos'] %-->
         <!-- % @category_text = @arr_category_text[@arr_category_code.find_index(@article.category)] %-->
-        <%= f.input :category, collection: [['valise', 'valise'], ['valise cabine', 'cabine'], ['sac à dos', 'sac-a-dos']], :selected => @article.category %>
+        <%= f.input :category, collection: ["Valise", "Sac-a-dos", "Camping", "Randonnée", "Plongée", "Sport d'hiver"], :selected => @article.category %>
         <%= f.input :description %>
         <%= f.input :price %>
         <%= f.input :address %>
