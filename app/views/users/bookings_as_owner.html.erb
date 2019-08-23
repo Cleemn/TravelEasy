@@ -1,0 +1,64 @@
+<ul class="list-inline tabs-underlined p-2">
+  <li>
+    <%= link_to "Mes articles en location", dashboard_path, class:"tab-underlined px-2" %>
+  </li>
+  <li>
+    <%= link_to "Les demandes reçues", bookings_as_owner_path, class:"tab-underlined-active px-3" %>
+  </li>
+  <li>
+    <%= link_to "Les demandes envoyées", bookings_as_user_path, class:"tab-underlined px-2" %>
+  </li>
+  <li>
+    <a href="#" class="tab-underlined">Ma messagerie</a>
+  </li>
+</ul>
+
+
+<div class="container">
+  <div class="row">
+    <div class="col-8 offset-2">
+      <h1><%= "#{current_user.first_name}" %></h1>
+
+<!-- as OWNER part -->
+      <%  unless @pending_bookings_as_owner.length == 0 %>
+        <div class="pending-bookings-as-owner">
+          <h3>Vous n'avez pas encore répondu à ces demandes de location :</h3>
+          <ul>
+            <% @pending_bookings_as_owner.each do |pending_booking| %>
+              <li>
+                <%= "#{pending_booking.user.email.capitalize}" %> vous a envoyé une demande pour :
+                <%= pending_booking.article.name %>.
+                <%= link_to "Répondez à sa demande", booking_path(pending_booking)%>
+              </li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
+<!-- ne faire apparaitre que s'il a vraiment recu des demandes -->
+
+      <% unless @validated_bookings_as_owner.length == 0 %>
+        <div class="validated-bookings-as-owner">
+          <h3>Vos articles actuellement en location:</h3>
+          <ul>
+            <% @validated_bookings_as_owner.each do |validated_booking| %>
+              <li>
+                <%= validated_booking.article.name %>
+                du <%= validated_booking.start_date.strftime("%A %d %B %Y") %>
+                au <%= validated_booking.end_date.strftime("%A %d %B %Y") %>
+                - <%= ((validated_booking.end_date.to_i - validated_booking.start_date.to_i)/86400) %> jours
+              </li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
+
+    <div class="update-profile">
+      <%= link_to "Apporter des modifications à votre profil", edit_user_registration_path %>
+    </div>
+
+    </div>
+  </div>
+</div>
+
+
+<!--  if, colonne dans ma table articles, colonne booked, boolean, clicker , if il est reserve ca apparait  -->

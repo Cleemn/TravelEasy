@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
   devise_for :users
   root to: 'pages#home'
+  get 'bookings_as_user', to: "users#bookings_as_user"
+  get 'bookings_as_owner', to: "users#bookings_as_owner"
 
   get "dashboard", to: "users#dashboard"
   # patch '/dashboard', to: 'bookings#accept'

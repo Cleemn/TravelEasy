@@ -1,0 +1,70 @@
+<ul class="list-inline tabs-underlined p-2">
+  <li>
+    <%= link_to "Mes articles en location", dashboard_path, class:"tab-underlined px-2" %>
+  </li>
+  <li>
+    <%= link_to "Les demandes reçues", bookings_as_owner_path, class:"tab-underlined px-2" %>
+  </li>
+  <li>
+    <%= link_to "Les demandes envoyées", bookings_as_user_path, class:"tab-underlined-active px-3" %>
+  </li>
+  <li>
+    <a href="#" class="tab-underlined">Ma messagerie</a>
+  </li>
+</ul>
+
+
+<div class="container">
+  <div class="row d-flex">
+    <div class="col-12 col-lg-6 pt-3">
+      <h3 class='text-center'>Vos demandes de location acceptées :</h3>
+<!--  <#% if current_user.bookings != [] %> -->
+<!-- <#%= if validated_bookings_as_user.size > 0 %> -->
+      <% if @validated_bookings_as_user.length > 0 %>
+
+        <div class="validated-bookings-as-user">
+          <ul>
+            <div class="card-alone">
+              <% @validated_bookings_as_user.each do |validated_booking| %>
+                <li>
+                  <div class="card-product d-flex">
+                    <%= cl_image_tag validated_booking.article.photo %>
+                    <div class="contenu p-3">
+                    <p><strong><%= validated_booking.article.name %></strong></p>
+                      <p>From <%= validated_booking.start_date.strftime("%A %d %B %Y") %> to <%= validated_booking.end_date.strftime("%A %d %B %Y") %></p>
+                      <p><%= ((validated_booking.end_date.to_i - validated_booking.start_date.to_i)/86400) %> days - <strong><p> Total : <%= ((validated_booking.end_date.to_i - validated_booking.start_date.to_i)/86400) * validated_booking.article.price %>€</p></strong></p>
+                    </div>
+                  </div>
+                </li>
+              <% end %>
+            </div>
+          </ul>
+        </div>
+      <% end %>
+    </div>
+      <!-- titre s'affiche, mettre if else -->
+    <div class="col-12 col-lg-6 pt-3">
+      <h3 class="text-center">Vos demandes de réservations en attente :</h3>
+      <% if @pending_bookings_as_user.size > 0 %>
+        <div class="your-bookings-as-user">
+          <ul>
+            <div class="card-square p-2">
+            <% @pending_bookings_as_user.each do |pending_booking| %>
+            <li>
+              <div class="text center">
+                <%= cl_image_tag pending_booking.article.photo %>
+                <%= pending_booking.article.name %>
+                <%= ((pending_booking.end_date.to_i - pending_booking.start_date.to_i)/86400) %> days
+              </div>
+            </li>
+            <% end %>
+            </div>
+          </ul>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+
+<!--  if, colonne dans ma table articles, colonne booked, boolean, clicker , if il est reserve ca apparait  -->

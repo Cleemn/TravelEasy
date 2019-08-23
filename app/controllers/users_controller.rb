@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
   def dashboard
   # as OWNER
+    @user = current_user
     @articles = current_user.articles
     # tous les articles que j'ai mis en location
     # Deux variables dans dashboard : @my_bookings (mes resa en tant que clients) et @my_rentings (mes resas en tant que proprio)
@@ -39,6 +40,37 @@ class UsersController < ApplicationController
     # @pending_bookings = current_user.bookings.where(status: 'pending')
     # # moi qui ai fait des demandes de location
     # status ne peut s appeler que sur une instance et non un array
+  end
+
+  def bookings_as_owner
+    @pending_bookings_as_owner = []
+    @articles = current_user.articles
+    @validated_bookings_as_owner = []
+    if current_user.articles != []
+      # @pending_bookings_as_owner = []
+      # @validated_bookings_as_owner = []
+      current_user.articles.each do |article|
+        article.bookings.each do |booking|
+          if booking.status == "pending"
+            @pending_bookings_as_owner << booking
+          else
+            @validated_bookings_as_owner << booking
+          end
+        end
+      end
+    end
+  end
+
+  def bookings_as_user
+    @bookings = current_user.bookings
+    @validated_bookings_as_user = []
+    # toutes mes bookings faites en tant qu'user
+    @pending_bookings_as_user = current_user.bookings.where(status: 'pending')
+    if current_user.bookings != []
+      current_user.bookings.each do |booking|
+        @validated_bookings_as_user << booking if booking.status == "accepted"
+      end
+    end
   end
 
   private
