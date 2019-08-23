@@ -11,8 +11,19 @@ class ReviewsController < ApplicationController
     @article = Article.find(params[:article_id])
     @review.article = @article
     @review.user = current_user
-    @review.save
-    redirect_to article_path(@article)
+    # before Ajax / # @review.save, # redirect_to article_path(@article)
+    if @review.save
+      respond_to do |format|
+        format.html { redirect_to article_path(@article) }
+        format.js
+      end
+    else
+      respond_to do |format|
+        # Need specify Path. from Reviews to Articles
+        format.html { render 'articles/show' }
+        format.js
+      end
+    end
   end
 
   private
