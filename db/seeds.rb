@@ -21,6 +21,9 @@ marcel.save
 gaspard = User.new(email: "gaspard@gmail.com", password:"gaspard", first_name: "Gaspard" , last_name: "Dupont")
 gaspard.save
 
+
+Article.destroy_all
+
 article1 = Article.new(name: "Valise", price: 3, description: "Valise bleue 30*50*40cm", user_id: 1, category: "Valise", address: "90 rue de la Folie Mericourt, 75011 PARIS")
 article1.save
 article2 = Article.new(name: "sac à dos XXL", price: 4, description: "50L - Tissu résistant à l'eau et boucle sur le dessus qui garde tout au sec", user_id: 2, category: "sac-a-dos", address: "6 rue catier bresson, 93500 PANTIN")
