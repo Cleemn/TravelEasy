@@ -44,24 +44,26 @@
       <%= cl_image_tag @article.photo, class:"image" %>
       <div class="container p-3">
         <h4 class="text-center p-3">Commentaires</h4>
-        <div class="card-review-show m-3">
-          <div class="review d-flex justify-content-around align-items-center p-3">
-            <%= image_tag "tente.png", width:50, height:50, crop: :fill %>
-            <div class="p-3">
-              <p><strong>Username</strong></p>
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum ligula eros, imperdiet sit amet maximus ut, placerat nec ligula. Curabitur finibus dignissim varius.</p>
+        <% @article.reviews.each do |review| %>
+          <div class="card-review-show m-3">
+            <div class="review d-flex justify-content-around align-items-center p-3">
+              <%= image_tag "tente.png", width:50, height:50, crop: :fill %>
+              <div class="p-3">
+                <p><strong>Username</strong></p>
+                <p><%= review.content %></p>
+              </div>
             </div>
           </div>
-        </div>
-        <div class="card-review-show m-3">
-          <div class="review d-flex justify-content-around align-items-center p-3">
-            <%= image_tag "tente.png", width:50, height:50, crop: :fill %>
-            <div class="p-3">
-              <p><strong>Username</strong></p>
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum ligula eros, imperdiet sit amet maximus ut, placerat nec ligula. Curabitur finibus dignissim varius.</p>
-            </div>
-          </div>
-        </div>
+        <% end %>
+      </div>
+      <div class="">
+        <h4 class="text-center p-3">Laisser un commentaire</h4>
+        <%= simple_form_for [@article, @review], url: article_reviews_url(@article) do |f| %>
+        <%= f.input :content, as: :string %>
+         <div class="d-flex justify-content-center">
+           <%= f.submit "Enregistrer", class: "btn btn-flat form-green" %>
+         </div>
+        <% end %>
       </div>
     </div>
   </div>

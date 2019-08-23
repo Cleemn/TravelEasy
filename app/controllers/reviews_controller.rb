@@ -8,8 +8,9 @@ class ReviewsController < ApplicationController
   def create
     @review = Review.new(review_params)
     # we need `article_id` to associate review with corresponding article
-    @article = Article.find(params[:restaurant_id])
+    @article = Article.find(params[:article_id])
     @review.article = @article
+    @review.user = current_user
     @review.save
     redirect_to article_path(@article)
   end
