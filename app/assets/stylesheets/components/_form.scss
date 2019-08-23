@@ -1,3 +1,7 @@
+.form-control {
+  border-radius: 3px 0px 0px 3px;
+}
+
 .simple_form {
   font-family: 'Source Sans Pro', sans-serif;
   font-weight: bold;
@@ -27,21 +31,20 @@
 
 .search .btn-success {
  color: white;
+ border-radius: 0px 3px 3px 0px;
+
 }
 .search {
   display: flex;
   position: absolute;
   margin-left: 70px;
   overflow: hidden;
-  box-shadow: 0 0 15px rgba(0,0,0,0.1);
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
   display: flex;
   align-items: left;
   color: white;
 }
 
-.form-search {
-
-}
 
 
 
