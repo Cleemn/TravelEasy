@@ -1,32 +1,34 @@
 <% if @myself == @owner %>
-  <h3>Your conversation with <%= @client.email.capitalize %> :</h3>
+  <h3 class="mt-5 text-center">Your conversation with <%= @client.email.capitalize %> :</h3>
 <% else %>
   <h3>Your conversation with <%= @owner.email.capitalize %> :</h3>
 <% end %>
 <div class="container">
   <div class="row">
     <div class="col-8 offset-2">
-      <% if @messages != [] %>
-      <!-- afficher ce qui s'ecrit quand il y a quelque chose -->
-      <ul>
-        <% @messages.each do |message| %>
-          <% if message.user == @myself %>
-            <li class="left-green-user">
-          <% else %>
-            <li class="right-blue-user">
+      <div class="justify-content-center">
+        <% if @messages != [] %>
+        <ul>
+          <% @messages.each do |message| %>
+            <% if message.user == @myself %>
+              <li class="d-flex mb-2 justify-content-start bg-primary text-white">
+            <% else %>
+              <li class="d-flex mb-2 justify-content-end bg-secondary text-white">
+            <% end %>
+            <p class="name-message"><%= message.user.email.capitalize %></p>
+            <br/>
+            <p class="my-message"><%= message.content %></p>
+          </li>
           <% end %>
-          <h6><%= message.user.email.capitalize %></h6>
-          <p><%= message.content %></p>
-        </li>
-        <% end %>
-      </ul>
-      <% else %>
-        <% if @myself == @owner %>
-          <p>Débutez votre conversation avec <%= @client.email.capitalize %></p>
+        </ul>
         <% else %>
-          <p>Débutez votre conversation avec <%= @owner.email.capitalize %></p>
+          <% if @myself == @owner %>
+            <p>Débutez votre conversation avec <%= @client.email.capitalize %></p>
+          <% else %>
+            <p>Débutez votre conversation avec <%= @owner.email.capitalize %></p>
+          <% end %>
         <% end %>
-      <% end %>
+      </div>
 
       <div class="formulaire">
         <%= render "messages/form" %>
