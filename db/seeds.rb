@@ -57,9 +57,9 @@ article22 = Article.new(name: "Chaussures de Trek", price: 3, description: "Ces 
 article22.save
 article14 = Article.new(name: "Bâton antichoc de randonnée et trekking", price: 4, description: "Valise souple 100% Polyester Waterproof (tissu 900D résistant au déchirure, imperméable a l'eau)", user_id: 6, category: "Randonnée", address: "Corse")
 article14.save
-article15 = Article.new(name: "Chaussures de Randonnée", price: 2, description: "Fonctionnent plutôt bien", user_id: 4, category: "Randonnée", address: "30 route des sanguinaire")
+article15 = Article.new(name: "Chaussures de Randonnée", price: 2, description: "Fonctionnent plutôt bien", user_id: 4, category: "Randonnée", address: "30 route des sanguinaire, corse")
 article15.save
-article16 = Article.new(name: "Bâton de randonnée", price: 3, description: "90cm", user_id: 4, category: "Randonnée", address: "10 route des sanguinaire")
+article16 = Article.new(name: "Bâton de randonnée", price: 3, description: "90cm", user_id: 4, category: "Randonnée", address: "10 route des sanguinaires Corse")
 article16.save
 
 
@@ -71,6 +71,52 @@ article19 = Article.new(name: "Raquettes", price: 4, description: "Performante, 
 article19.save
 article20 = Article.new(name: "Snowboard", price: 5, description: "Un snowboard avec une grande tolérance aux fautes de carre grâce à sa torsion souple entre les pieds. Bonne flottabilité en poudreuse grâce à son grand rocker avant et arrière.", user_id: 6, category: "Sports d'Hiver", address: "Grenoble")
 article20.save
+
+article23 = Article.new(
+  name: "Gourde",
+  price: 1,
+  description: "Tentative d'amortissement de ma groude",
+  user_id: 3,
+  category: "Randonnée",
+  address: "Paris")
+article23.save
+
+article24 = Article.new(
+  name: "Kaway",
+  price: 1,
+  description: "Tentative d'amortissement de mon Kaway",
+  user_id: 3,
+  category: "Randonnée",
+  address: "Paris")
+article24.save
+
+article25 = Article.new(
+  name: "Tente 2 secondes",
+  price: 2,
+  description: "Hyper facile à déployer... et il y a des Tutos sur Youtbue pour la replier",
+  user_id: 2,
+  category: "Randonnée",
+  address: "Bordeaux")
+article25.save
+
+article26 = Article.new(
+  name: "Matelas gonflable",
+  price: 1,
+  description: "Attention, il est percé",
+  user_id: 3,
+  category: "Randonnée",
+  address: "Tours")
+article26.save
+
+article27 = Article.new(
+  name: "Sherpa",
+  price: 160,
+  description: "Partique",
+  user_id: 3,
+  category: "Randonnée",
+  address: "Corse ajaccio")
+article27.save
+
 
 
 
