@@ -8,7 +8,7 @@ class Article < ApplicationRecord
   mount_uploader :photo, PhotoUploader
   geocoded_by :address
   after_validation :geocode, if: :will_save_change_to_address?
-  validates :category, inclusion: { in: %w[valise cabine sac-a-dos],
+  validates :category, inclusion: { in: %w[Valise Sac-a-dos Camping Randonnée Plongée "Sport d'hiver"],
                                     message: "%{value} is not a valid category" }
   # include PgSearch
   # pg_search_scope :global_search,
@@ -20,5 +20,5 @@ class Article < ApplicationRecord
   #     tsearch: { prefix: true }
   #   }
   include PgSearch
-    multisearchable against: [:name, :description, :address]
+    multisearchable against: [:name, :description, :address, :category]
   end
