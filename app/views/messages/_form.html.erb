@@ -1,0 +1,4 @@
+<%= simple_form_for [@booking, @message] do |f| %>
+  <%= f.input :content, label: false, placeholder: "Ecrivez votre message ici" %>
+  <%= f.submit "Envoyer", class: "btn btn-primary" %>
+<% end %>

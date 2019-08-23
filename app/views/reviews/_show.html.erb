@@ -1,0 +1,12 @@
+<div class="card-review-show m-3">
+  <div class="review d-flex justify-content-around align-items-center p-3">
+    <%= image_tag "tente.png", width:50, height:50, crop: :fill %>
+    <div class="p-3">
+      <% user_id = review.user_id %>
+      <% user = User.find(user_id) %>
+      <p><strong><%= user.first_name %></strong></p>
+      <p><%= review.content %></p>
+    </div>
+  </div>
+</div>
+
