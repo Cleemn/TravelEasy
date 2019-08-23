@@ -1,18 +1,18 @@
 <div class="container p-3">
   <div class="row">
     <div class="col-12 col-lg-6">
-        <div class="card-show rounded">
+        <div class="card-show rounded flex-fill">
           <div class="card-product-infos">
             <div class="d-flex justify-content-between d-flex align-items-center">
-              <h1><%= @article.name %></h1>
+              <div><h1><%= @article.name %></h1></div>
               <div class="icons p-2">
                 <% if policy(@article).edit? %>
                   <%= link_to edit_article_path(@article), class: "p-2" do %>
-                    <i class="fas fa-pencil-alt fa-2x" style="color:#61D095"></i>
+                    <i class="fas fa-pencil-alt fa-1x" style="color:#61D095"></i>
                   <% end %>
                 <% end %>
                 <% if policy(@article).destroy? %>
-                  <%= link_to article_path, method: :delete, data: { confirm: "Are you sure?" }, class:"p-2" do %><i class="fas fa-trash fa-2x" style="color:#439775"></i>
+                  <%= link_to article_path, method: :delete, data: { confirm: "Are you sure?" }, class:"p-2" do %><i class="fas fa-trash fa-1x" style="color:#439775"></i>
                   <% end %>
                 <% end %>
               </div>
@@ -26,7 +26,8 @@
               </div>
             </div>
             <% if policy(Booking.new(article_id: @article.id)).create? %>
-              <div class="">
+            <div class="d-flex">
+              <div class="text-center col-6 offset-3">
                 <h1 class="form-title">Réserver</h1>
                 <%= simple_form_for [@article, @booking], url: article_bookings_url(@article) do |f| %>
                   <%= f.input :start_date, as: :string, input_html: {class:"date"} %>
@@ -36,11 +37,12 @@
                   </div>
                 <% end %>
               </div>
+            </div>
             <% end %>
           </div>
         </div>
     </div>
-    <div class="col-12 col-lg-6">
+    <div class="col-12 col-lg-6 text-center">
       <%= cl_image_tag @article.photo, class:"image" %>
       <% if @article.reviews.blank? %>
         Soyez le premier à laisser un commentaire.
