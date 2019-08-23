@@ -1,0 +1,38 @@
+<h3>Your conversation with <%= @user.email.capitalize %> </h3>
+<div class="container">
+  <div class="row">
+    <div class="col-8 offset-2">
+      <% if @content != [] %>
+      <!-- afficher ce qui s'ecrit quand il y a quelque chose -->
+      <ul>
+        <% @content.each do |message| %>
+        <li>
+          <%= message.content %>
+        </li>
+        <% end %>
+      </ul>
+
+        <div class="other_user">
+          <h4><%= @user.email.capitalize %> :</h4>
+          <p> CONVERSATION CONTENT </p>
+        </div>
+        <div class="current_user">
+          <h4><%= @myself.email.capitalize %> :</h4>
+          <p> CONVERSATION CONTENT</p>
+        </div>
+      <!-- faire une boucle ou les messages s'enchainent until plus personne n'ecrit,list -->
+      <% else %>
+        <p>Débutez votre conversation avec <%= @user.email.capitalize %></p>
+      <% end %>
+
+      <div class="formulaire">
+        <%= render "messages/form" %>
+      </div>
+
+
+
+
+    </div>
+  </div>
+</div>
+

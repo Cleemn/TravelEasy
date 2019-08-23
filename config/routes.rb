@@ -15,8 +15,8 @@ Rails.application.routes.draw do
   resources :bookings, only: [:show] do
     patch "accept"
     put "decline"
+    resources :messages, only: [:index, :create]
   end
-
 
 end
 
