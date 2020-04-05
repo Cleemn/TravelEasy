@@ -7,7 +7,9 @@
     "esm": "^3.2.25",
     "flatpickr": "^4.6.2",
     "jquery": "^3.4.1",
+    "kind-of": "^6.0.3",
     "mapbox-gl": "^1.2.1",
+    "minimist": "^1.2.3",
     "popper.js": "^1.15.0",
     "serialize-javascript": "^2.1.2",
     "typed.js": "^2.0.10"
