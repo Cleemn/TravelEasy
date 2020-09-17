@@ -12,7 +12,7 @@
     "minimist": "^1.2.3",
     "node-forge": "^0.10.0",
     "popper.js": "^1.15.0",
-    "serialize-javascript": "^2.1.2",
+    "serialize-javascript": "^3.1.0",
     "typed.js": "^2.0.10",
     "yargs-parser": "^13.1.2"
   },
